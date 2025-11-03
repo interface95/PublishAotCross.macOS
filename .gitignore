@@ -1,0 +1,37 @@
+# Build results
+bin/
+obj/
+artifacts/
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+
+# Visual Studio
+.vs/
+
+# Rider
+.idea/
+
+# Visual Studio Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+!packages/repositories.config
+
+# Test results
+TestResults/
+*.trx
+
+# Temporary files
+*.log
+*.tmp
+*~
+

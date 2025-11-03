@@ -1,0 +1,48 @@
+name: Publish to NuGet
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish (e.g., 1.0.0)'
+        required: true
+
+jobs:
+  publish:
+    runs-on: macos-latest
+    name: Build and publish to NuGet
+    
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9.0.x'
+        
+    - name: Extract version from tag
+      id: get_version
+      run: |
+        if [ "${{ github.event_name }}" == "push" ]; then
+          VERSION=${GITHUB_REF#refs/tags/v}
+        else
+          VERSION=${{ github.event.inputs.version }}
+        fi
+        echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+        echo "Publishing version: $VERSION"
+        
+    - name: Build NuGet package
+      run: dotnet build -t:Pack src/PublishAotCrossXWin.macOS.nuproj -p:Version=${{ steps.get_version.outputs.VERSION }} -c Release
+      
+    - name: Publish to NuGet
+      run: dotnet nuget push src/bin/Release/PublishAotCrossXWin.macOS.${{ steps.get_version.outputs.VERSION }}.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+      
+    - name: Upload package artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: PublishAotCrossXWin.macOS.${{ steps.get_version.outputs.VERSION }}.nupkg
+        path: src/bin/Release/PublishAotCrossXWin.macOS.${{ steps.get_version.outputs.VERSION }}.nupkg
