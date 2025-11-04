@@ -17,7 +17,39 @@ Enabling cross-compilation to win-x64/win-arm64/win-x86 **and** linux-x64/linux-
 
 ## Quick Start
 
-### For Windows Cross-compilation
+### 🚀 One-Click Setup (Recommended)
+
+We provide automated setup scripts for easy installation:
+
+```bash
+# Install complete environment (Windows + Linux)
+curl -fsSL https://raw.githubusercontent.com/interface95/PublishAotCross.macOS/main/setup-cross-all.sh | bash
+
+# Or install Windows cross-compilation only
+curl -fsSL https://raw.githubusercontent.com/interface95/PublishAotCross.macOS/main/setup-cross-windows.sh | bash
+
+# Or install Linux cross-compilation only
+curl -fsSL https://raw.githubusercontent.com/interface95/PublishAotCross.macOS/main/setup-cross-linux.sh | bash
+```
+
+**Or clone and run locally:**
+```bash
+git clone https://github.com/interface95/PublishAotCross.macOS.git
+cd PublishAotCross.macOS
+
+# Complete environment
+./setup-cross-all.sh
+
+# Windows only
+./setup-cross-windows.sh
+
+# Linux only
+./setup-cross-linux.sh
+```
+
+### 📖 Manual Setup
+
+#### For Windows Cross-compilation
 
 1. **Install lld-link** (via Homebrew):
    ```bash

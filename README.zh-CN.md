@@ -17,7 +17,39 @@ Microsoft.NETCore.Native.Publish.targets(59,5): error : Cross-OS native compilat
 
 ## 快速开始
 
-### Windows 交叉编译
+### 🚀 一键安装（推荐）
+
+我们提供了自动化安装脚本，方便快速安装：
+
+```bash
+# 安装完整环境（Windows + Linux）
+curl -fsSL https://raw.githubusercontent.com/interface95/PublishAotCross.macOS/main/setup-cross-all.sh | bash
+
+# 或仅安装 Windows 交叉编译环境
+curl -fsSL https://raw.githubusercontent.com/interface95/PublishAotCross.macOS/main/setup-cross-windows.sh | bash
+
+# 或仅安装 Linux 交叉编译环境
+curl -fsSL https://raw.githubusercontent.com/interface95/PublishAotCross.macOS/main/setup-cross-linux.sh | bash
+```
+
+**或克隆后本地运行：**
+```bash
+git clone https://github.com/interface95/PublishAotCross.macOS.git
+cd PublishAotCross.macOS
+
+# 完整环境
+./setup-cross-all.sh
+
+# 仅 Windows
+./setup-cross-windows.sh
+
+# 仅 Linux
+./setup-cross-linux.sh
+```
+
+### 📖 手动安装
+
+#### Windows 交叉编译
 
 1. **安装 lld-link**（通过 Homebrew）：
    ```bash
