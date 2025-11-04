@@ -91,7 +91,7 @@ jobs:
         ldd Hello
         ls -lh Hello
 
-  # 在 Linux ARM64 上验证
+  # 在 Linux ARM64 上验证 (使用 Docker 容器)
   validate_linux_arm64:
     needs: build_and_test_linux
     runs-on: ubuntu-latest
@@ -103,10 +103,10 @@ jobs:
       with:
         name: Hello-Linux-arm64
         
-    - name: Install QEMU for ARM64 emulation
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y qemu-user-static
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v3
+      with:
+        platforms: arm64
         
     - name: Make executable
       run: chmod +x Hello
@@ -116,8 +116,13 @@ jobs:
         file Hello
         ls -lh Hello
       
-    - name: Run Linux ARM64 binary (emulated)
-      run: qemu-aarch64-static Hello
+    - name: Run Linux ARM64 binary in ARM64 container
+      run: |
+        docker run --rm --platform linux/arm64 \
+          -v $PWD:/workspace \
+          -w /workspace \
+          ubuntu:22.04 \
+          ./Hello
 
   # 在 Alpine Linux (musl) 容器中验证
   validate_linux_musl_x64:
