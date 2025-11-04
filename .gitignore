@@ -36,6 +36,8 @@ TestResults/
 *~
 
 # VM testing scripts (local only, do not commit)
+test-vm.sh
 setup-full-env.sh
 setup-auto.sh
+TEST-VM-SETUP.md
 VM-SCRIPTS-README.md
