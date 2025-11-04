@@ -107,6 +107,9 @@ jobs:
       with:
         platforms: arm64
         
+    - name: Make executable
+      run: chmod +x Hello
+        
     - name: Check binary info
       run: |
         file Hello
