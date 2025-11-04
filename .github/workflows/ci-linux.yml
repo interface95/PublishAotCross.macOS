@@ -79,6 +79,9 @@ jobs:
       with:
         name: Hello-Linux-x64
         
+    - name: Install ICU library
+      run: sudo apt-get update && sudo apt-get install -y libicu70
+        
     - name: Make executable
       run: chmod +x Hello
         
@@ -122,7 +125,7 @@ jobs:
           -v $PWD:/workspace \
           -w /workspace \
           ubuntu:22.04 \
-          ./Hello
+          bash -c "apt-get update && apt-get install -y libicu70 && ./Hello"
 
   # 在 Alpine Linux (musl) 容器中验证
   validate_linux_musl_x64:
@@ -136,6 +139,9 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: Hello-Linux-musl-x64
+        
+    - name: Install ICU library
+      run: apk add --no-cache icu-libs
         
     - name: Make executable
       run: chmod +x Hello
