@@ -24,7 +24,7 @@ This package now supports cross-compiling .NET Native AOT applications from macO
 
 3. **Add this package to your Native AOT project**:
    ```xml
-   <PackageReference Include="PublishAotCross.macOS" Version="1.0.0" />
+   <PackageReference Include="PublishAotCross.macOS" Version="1.0.2-preview" />
    ```
 
 ## Publish for Linux

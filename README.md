@@ -52,7 +52,7 @@ Enabling cross-compilation to win-x64/win-arm64/win-x86 **and** linux-x64/linux-
 
 4. **Add this package to your Native AOT project**:
    ```xml
-   <PackageReference Include="PublishAotCross.macOS" Version="1.0.0" />
+   <PackageReference Include="PublishAotCross.macOS" Version="1.0.2-preview" />
    ```
 
 5. **Publish for Windows**:
@@ -75,7 +75,7 @@ Enabling cross-compilation to win-x64/win-arm64/win-x86 **and** linux-x64/linux-
 
 2. **Add this package to your Native AOT project** (same as above):
    ```xml
-   <PackageReference Include="PublishAotCross.macOS" Version="1.0.0" />
+   <PackageReference Include="PublishAotCross.macOS" Version="1.0.2-preview" />
    ```
 
 3. **Publish for Linux**:

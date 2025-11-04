@@ -52,7 +52,7 @@ Microsoft.NETCore.Native.Publish.targets(59,5): error : Cross-OS native compilat
 
 4. **将此包添加到你的 Native AOT 项目**：
    ```xml
-   <PackageReference Include="PublishAotCross.macOS" Version="1.0.0" />
+   <PackageReference Include="PublishAotCross.macOS" Version="1.0.2-preview" />
    ```
 
 5. **发布到 Windows**：
@@ -75,7 +75,7 @@ Microsoft.NETCore.Native.Publish.targets(59,5): error : Cross-OS native compilat
 
 2. **将此包添加到你的 Native AOT 项目**（同上）：
    ```xml
-   <PackageReference Include="PublishAotCross.macOS" Version="1.0.0" />
+   <PackageReference Include="PublishAotCross.macOS" Version="1.0.2-preview" />
    ```
 
 3. **发布到 Linux**：

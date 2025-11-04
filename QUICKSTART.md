@@ -28,7 +28,7 @@ xwin --accept-license --cache-dir "$HOME/.local/share/xwin-sdk/" \
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="PublishAotCross.macOS" Version="1.0.0" />
+    <PackageReference Include="PublishAotCross.macOS" Version="1.0.2-preview" />
   </ItemGroup>
 </Project>
 ```
@@ -63,7 +63,7 @@ export PATH="$(brew --prefix llvm)/bin:$PATH"
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="PublishAotCross.macOS" Version="1.0.0" />
+    <PackageReference Include="PublishAotCross.macOS" Version="1.0.2-preview" />
   </ItemGroup>
 </Project>
 ```
