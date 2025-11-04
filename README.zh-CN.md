@@ -32,7 +32,17 @@ curl -fsSL https://raw.githubusercontent.com/interface95/PublishAotCross.macOS/m
 curl -fsSL https://raw.githubusercontent.com/interface95/PublishAotCross.macOS/main/setup-cross-linux.sh | bash
 ```
 
-**或克隆后本地运行：**
+> **⚠️ 安全提示：**
+> - **不要**在 curl 命令前使用 `sudo`
+> - 脚本会在需要时提示输入密码（安装 Homebrew 时）
+> - 为了更安全，建议先查看脚本内容：
+>   ```bash
+>   curl -fsSL https://raw.githubusercontent.com/interface95/PublishAotCross.macOS/main/setup-cross-all.sh -o setup.sh
+>   cat setup.sh  # 查看脚本内容
+>   bash setup.sh
+>   ```
+
+**或克隆后本地运行（更安全）：**
 ```bash
 git clone https://github.com/interface95/PublishAotCross.macOS.git
 cd PublishAotCross.macOS

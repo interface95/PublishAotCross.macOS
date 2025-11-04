@@ -32,7 +32,17 @@ curl -fsSL https://raw.githubusercontent.com/interface95/PublishAotCross.macOS/m
 curl -fsSL https://raw.githubusercontent.com/interface95/PublishAotCross.macOS/main/setup-cross-linux.sh | bash
 ```
 
-**Or clone and run locally:**
+> **⚠️ Security Note:**
+> - **DO NOT** use `sudo` with the curl command
+> - The script will prompt for your password when needed (Homebrew installation)
+> - For better security, review the script first:
+>   ```bash
+>   curl -fsSL https://raw.githubusercontent.com/interface95/PublishAotCross.macOS/main/setup-cross-all.sh -o setup.sh
+>   cat setup.sh  # Review the content
+>   bash setup.sh
+>   ```
+
+**Or clone and run locally (safer):**
 ```bash
 git clone https://github.com/interface95/PublishAotCross.macOS.git
 cd PublishAotCross.macOS
