@@ -5,7 +5,7 @@
     
     <!-- NuGet 包配置 -->
     <PackageId>PublishAotCross.macOS</PackageId>
-    <Version>1.0.2-preview</Version>
+    <Version>1.0.3-preview</Version>
     <Authors>Community</Authors>
     <Company>Community</Company>
     <Description>在 macOS 上交叉编译 .NET Native AOT 应用到 Windows 和 Linux 平台。MSBuild targets to aid in crosscompiling Native AOT publishing targeting Windows and Linux from macOS.</Description>
@@ -22,7 +22,7 @@
       <Pack>true</Pack>
       <PackagePath>build</PackagePath>
     </None>
-    <None Include="CrosscompileXWin.targets">
+    <None Include="CrosscompileWin.targets">
       <Pack>true</Pack>
       <PackagePath>build</PackagePath>
     </None>
