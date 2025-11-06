@@ -136,6 +136,41 @@ cd PublishAotCross.macOS
    
    > 💡 **注意**：需要 `/p:StripSymbols=false` 参数，因为通常没有安装 `llvm-objcopy`。如果你安装了 LLVM 并添加到 PATH，可以省略此参数。
 
+#### 优化二进制文件大小（可选）
+
+默认情况下，Linux 二进制文件包含调试符号，导致文件较大。通过安装 LLVM 并启用符号剥离，可以将二进制文件大小减少约 **80%**：
+
+1. **安装 LLVM**（包含 `llvm-objcopy` 工具）：
+   ```bash
+   brew install llvm
+   ```
+
+2. **创建 `objcopy` 符号链接**：
+   ```bash
+   mkdir -p ~/.local/bin
+   ln -sf $(brew --prefix llvm)/bin/llvm-objcopy ~/.local/bin/objcopy
+   ```
+
+3. **添加到 PATH**（添加到 `~/.zshrc` 以便永久生效）：
+   ```bash
+   export PATH="$HOME/.local/bin:$(brew --prefix llvm)/bin:$PATH"
+   ```
+
+4. **启用符号剥离进行发布**：
+   ```bash
+   dotnet publish -r linux-x64 -c Release /p:StripSymbols=true
+   ```
+
+**大小对比：**
+
+| 目标平台 | 未剥离符号 | 已剥离符号 | 减少 |
+|---------|----------|----------|------|
+| linux-x64 | 7.4 MB | 1.5 MB | ~80% |
+| linux-arm64 | 7.8 MB | 1.6 MB | ~81% |
+| linux-musl-x64 | 8.8 MB | 1.8 MB | ~84% |
+
+> 💡 **提示**：建议在生产部署时启用符号剥离以减小二进制文件大小。开发/调试时，使用 `/p:StripSymbols=false` 保留调试符号。
+
 📖 **详细 Linux 交叉编译指南**：请参阅 [QUICKSTART-LINUX.md](QUICKSTART-LINUX.md)
 
 ## 配置

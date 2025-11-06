@@ -136,6 +136,41 @@ cd PublishAotCross.macOS
    
    > 💡 **Note**: The `/p:StripSymbols=false` parameter is required because `llvm-objcopy` is typically not installed. If you install LLVM and add it to PATH, you can omit this parameter.
 
+#### Optimizing Binary Size (Optional)
+
+By default, Linux binaries include debug symbols, resulting in larger file sizes. You can reduce binary size by **~80%** by installing LLVM and enabling symbol stripping:
+
+1. **Install LLVM** (includes `llvm-objcopy`):
+   ```bash
+   brew install llvm
+   ```
+
+2. **Create `objcopy` symlink**:
+   ```bash
+   mkdir -p ~/.local/bin
+   ln -sf $(brew --prefix llvm)/bin/llvm-objcopy ~/.local/bin/objcopy
+   ```
+
+3. **Add to PATH** (add to `~/.zshrc` for persistence):
+   ```bash
+   export PATH="$HOME/.local/bin:$(brew --prefix llvm)/bin:$PATH"
+   ```
+
+4. **Publish with symbol stripping enabled**:
+   ```bash
+   dotnet publish -r linux-x64 -c Release /p:StripSymbols=true
+   ```
+
+**Size comparison:**
+
+| Target | Without Stripping | With Stripping | Reduction |
+|--------|------------------|----------------|-----------|
+| linux-x64 | 7.4 MB | 1.5 MB | ~80% |
+| linux-arm64 | 7.8 MB | 1.6 MB | ~81% |
+| linux-musl-x64 | 8.8 MB | 1.8 MB | ~84% |
+
+> 💡 **Tip**: Symbol stripping is recommended for production deployments to reduce binary size. For development/debugging, keep symbols intact by using `/p:StripSymbols=false`.
+
 📖 **Detailed Linux cross-compilation guide**: See [QUICKSTART-LINUX.md](QUICKSTART-LINUX.md)
 
 ## Configuration
